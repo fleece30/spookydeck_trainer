@@ -62,7 +62,7 @@ def create_embeddings():
 
 
 def main():
-    print("Hello world")
+    create_embeddings()
 
 
 if __name__ == "__main__":
