@@ -2,12 +2,14 @@ import csv
 import sys
 import os
 from os.path import isfile, join
-from constants import fields, file_path
+from cast_scraper.constants import fields, file_path
 
 
 def read_csv():
     rows = []
-    with open("rephrased_overviews_movies_unique.csv", mode='r') as file:
+    with open(
+            "/home/fleece/Desktop/spookydeck_trainer/rephrase_overviews/rephrase_overviews/horror_movies_rephrased_1.csv",
+            mode='r') as file:
         csv_file = csv.DictReader(file)
         for line in csv_file:
             if len(line['overview']) > 15 and line['overview'] != 'No overview found.':

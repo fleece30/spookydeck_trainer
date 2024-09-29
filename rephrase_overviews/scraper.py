@@ -9,7 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from constants import file_path, fields
+from rephrase_overviews.constants import file_path, fields
 
 
 def login(driver):
@@ -26,7 +26,7 @@ def login(driver):
     login_button = driver.find_element(By.CSS_SELECTOR, '[data-testid="login-btn"]')
     login_button.click()
 
-    time.sleep(10)
+    time.sleep(5)
 
 
 def rephrase_overviews(driver, rows, output_file_name_suffix):
@@ -36,7 +36,7 @@ def rephrase_overviews(driver, rows, output_file_name_suffix):
     start_time = time.time()
     missed_movies = []
 
-    time.sleep(5)
+    time.sleep(2)
     filename = f"{file_path}/horror_movies_rephrased_{output_file_name_suffix}.csv"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
@@ -101,11 +101,10 @@ def rephrase_overviews(driver, rows, output_file_name_suffix):
             mins = int(((estimated_time_left / 3600) % 1) * 60)
             seconds = int(((((estimated_time_left / 3600) % 1) * 60) % 1) * 60)
             # Print calcs
-            sys.stdout.write("\r" + " " * 100)  # Clear the line
-            sys.stdout.write(f"\rDone {done_count} out of {len(rows)} at {iteration_time:.2f} seconds / row. "
-                             f"Total time: {total_time:.2f}s. Estimated time left: {hours}:{mins}:{seconds}.")
-            sys.stdout.flush()
-            output_box.clear()
+            print(f"\rDone {done_count} out of {len(rows)} at {iteration_time:.2f} seconds / row. "
+                             f"Total time: {total_time:.2f}s. Estimated time left: {hours}:{mins}:{seconds}.", end="\r")
+            # sys.stdout.flush()
+            # output_box.clear()
 
             # Wait before the next iteration
             time.sleep(1)

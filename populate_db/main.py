@@ -1,9 +1,9 @@
 import csv
 from neo4j import GraphDatabase
 
-uri = "bolt://localhost:7688"
+uri = "bolt://localhost:7687"
 username = "neo4j"
-password = "Tz12ep34"
+password = "Tz12ep34f3012@"
 
 
 class DBPopulator:
@@ -27,8 +27,12 @@ class DBPopulator:
                 rows = list(reader)  # Read all rows into memory
                 total = len(rows)  # Get total number of rows
                 for counter, row in enumerate(rows, start=1):
-                    print(f"Finished {counter}/{total}\r", end="")
-                    session.execute_write(self.create_data, row)
+                    try:
+                        print(f"Finished {counter}/{total}\r", end="")
+                        session.execute_write(self.create_data, row)
+                    except Exception as e:
+                        print(f"Error: {e} in row {row}")
+
 
     @staticmethod
     def create_data(tx, row):

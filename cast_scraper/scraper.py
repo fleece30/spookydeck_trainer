@@ -6,8 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 
-from constants import file_path, fields
-from helper import print_progress_bar
+from cast_scraper.constants import file_path, fields
+from cast_scraper.helper import print_progress_bar
 
 
 def setup():
@@ -15,7 +15,7 @@ def setup():
     assert os.path.exists(gecko_path), "GeckoDriver not found at the specified path"
     assert os.access(gecko_path, os.X_OK), "GeckoDriver is not executable"
 
-    profile_path = '/home/fleece/snap/firefox/common/.mozilla/firefox/27vfalxj.selenium'
+    profile_path = '/home/fleece/snap/firefox/common/.mozilla/firefox/ulftqqiy.selenium'
     assert os.path.exists(profile_path), "Firefox profile path does not exist"
 
     profile = webdriver.FirefoxProfile(profile_path)
@@ -73,3 +73,7 @@ def get_people(driver, rows, output_file_name_suffix):
             time.sleep(2)
 
     driver.close()
+
+def get_release_dates(driver, rows, output_file_name_suffix):
+    for i, row in enumerate(rows):
+        driver.get(f"https://www.themoviedb.org/movie/{row['id']}")
