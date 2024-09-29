@@ -9,7 +9,7 @@ def fetch_movie_data_from_tmdb_api(imdb_id):
     url = f"https://api.themoviedb.org/3/find/{imdb_id}?external_source=imdb_id"
 
     response = requests.get(url, headers={
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZWI4NzRiYWI0MmFkZjJlNzEyNjIxYmE5Zjk0YjE4MyIsIm5iZiI6MTcyMTY4ODQ2NS44Njg2NjMsInN1YiI6IjYwMWEwZmUyZTk0MmVlMDA0MGY0ZDFjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.anLHHudg_zOiMviCizcJJv2lWtwWMplA0DOugD_AplU"})
+        "Authorization": "Bearer "})
 
     if len(response.json()['movie_results']) == 0:
         return None
@@ -18,7 +18,7 @@ def fetch_movie_data_from_tmdb_api(imdb_id):
 
     tmdb_url = f"https://api.themoviedb.org/3/movie/{tmdb_id}"
     response = requests.get(tmdb_url, headers={
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZWI4NzRiYWI0MmFkZjJlNzEyNjIxYmE5Zjk0YjE4MyIsIm5iZiI6MTcyMTY4ODQ2NS44Njg2NjMsInN1YiI6IjYwMWEwZmUyZTk0MmVlMDA0MGY0ZDFjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.anLHHudg_zOiMviCizcJJv2lWtwWMplA0DOugD_AplU"})
+        "Authorization": "Bearer "})
 
     return response.json()
 
